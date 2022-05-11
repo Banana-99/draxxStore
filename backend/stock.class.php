@@ -2,7 +2,6 @@
 
 class Stock extends Dbh
 {
-  // READ
   public function getStock()
   {
     $sql = "SELECT * FROM stocks";
@@ -19,15 +18,10 @@ class Stock extends Dbh
     $sql = "SELECT * FROM stocks WHERE id = ?";
     $stmt = $this->connect()->prepare($sql);
     $stmt->execute([$id]);
-
-    // send result to a variable and return it
     $result = $stmt->fetch();
     return $result;
   }
 
-  // END READ
-
-  // CREATE
   public function addStock($designation, $quantite, $prix, $categorie, $type, $fournisseur)
   {
     $sql = "INSERT INTO `stocks` (`id`, `designation`, `quantite`, `prix`, `categorie`, `type`, `fournisseurs_id`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
@@ -35,8 +29,6 @@ class Stock extends Dbh
     $stmt->execute([$designation, $quantite, $prix, $categorie, $type, $fournisseur]);
   }
 
-  // END CREATE
-  // UPDATE
   public function updateStock($id, $designation, $quantite, $prix, $categorie, $type, $fournisseur)
   {
     $sql = "UPDATE stocks SET designation = ?, quantite = ?, prix = ?, categorie = ?, type = ?, fournisseurs_id = ? WHERE id = ?";
@@ -44,8 +36,6 @@ class Stock extends Dbh
     $stmt->execute([$designation, $quantite, $prix, $categorie, $type, $fournisseur, $id]);
   }
 
-  // END UPDATE
-  // DELETE
   public function deleteStock($id)
   {
     $sql = "DELETE FROM stocks WHERE id = ?";

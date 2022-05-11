@@ -39,14 +39,13 @@ $fournisseurs = new Fournisseur();
                                         <th>Type</th>
                                         <th>Categorie</th>
                                         <th>Fournisseur</th>
-                                        <th>Modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                  $produits = $stock->getStock();
-                  if (!empty($produits)) {
-                    foreach ($produits as $produit) { ?>
+                                    $produits = $stock->getStock();
+                                    if (!empty($produits)) {
+                                        foreach ($produits as $produit) { ?>
                                     <tr>
                                         <td>
                                             <?php echo $produit['designation']; ?>
@@ -65,17 +64,13 @@ $fournisseurs = new Fournisseur();
                                         </td>
                                         <td>
                                             <?php $fournisseur = $fournisseurs->getFournisseurByID($produit['fournisseurs_id']);
-                          echo $fournisseur['nom'];
-                          ?>
+                                                    echo $fournisseur['nom'];
+                                                    ?>
                                         </td>
-                                        <td>
-                                            <a href="?id=<?php echo $produit['id']; ?>">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                        </td>
+
                                     </tr>
                                     <?php }
-                  } ?>
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>

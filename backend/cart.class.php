@@ -24,15 +24,27 @@ class Cart extends Dbh
     $result = $stmt->fetch();
     return $result;
   }
+  //get cart by nCommande
+  public function getCartByNCommande($nCommande)
+  {
+    $sql = "SELECT * FROM cart WHERE nCommande = ?";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute([$nCommande]);
+
+    while ($result = $stmt->fetchAll()) {
+      return $result;
+    }
+  }
+
 
   //END READ
 
   //CREATE
-  public function addCart($id_produit, $quantite, $commande)
+  public function addCart($product_id, $quantity, $cart_id)
   {
-    $sql = "INSERT INTO `cart` (`id`, `id_produit`, `quantite`, `commande`) VALUES (NULL, ?, ?, ?)";
+    $sql = "INSERT INTO `cart` (`id`, `produit_id`, `quantite`, `livrer`, `nCommande`) VALUES (NULL, ?, ?, ?, ?);";
     $stmt = $this->connect()->prepare($sql);
-    $stmt->execute([$id_produit, $quantite, $commande]);
+    $stmt->execute([$product_id, $quantity, 0, $cart_id]);
   }
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 11 mai 2022 à 00:05
+-- Généré le : mer. 11 mai 2022 à 20:45
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -56,9 +56,17 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `produit_id` int(11) NOT NULL,
   `quantite` int(11) NOT NULL,
   `livrer` int(11) NOT NULL DEFAULT '0',
-  `commande` int(11) NOT NULL,
+  `nCommande` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `cart`
+--
+
+INSERT INTO `cart` (`id`, `produit_id`, `quantite`, `livrer`, `nCommande`) VALUES
+(22, 8, 200, 0, '627c181537cc8'),
+(21, 8, 200, 0, '627c17c099d3c');
 
 -- --------------------------------------------------------
 
@@ -120,17 +128,16 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `date_livraison` varchar(255) DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL,
   `etat` varchar(255) NOT NULL,
+  `nCommande` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `commande`
 --
 
-INSERT INTO `commande` (`id`, `date_commande`, `date_livraison`, `client_id`, `etat`) VALUES
-(16, '2022-05-10', NULL, NULL, 'en cours'),
-(15, '2022-05-10', NULL, NULL, 'en cours'),
-(14, '2022-05-10', NULL, NULL, 'en cours');
+INSERT INTO `commande` (`id`, `date_commande`, `date_livraison`, `client_id`, `etat`, `nCommande`) VALUES
+(32, '2022-05-11', '2022-05-25', 2, 'en cours', '627c181537cc8');
 
 -- --------------------------------------------------------
 
@@ -174,16 +181,15 @@ CREATE TABLE IF NOT EXISTS `fournitures` (
   `produit_id` int(11) NOT NULL,
   `date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `fournitures`
 --
 
 INSERT INTO `fournitures` (`id`, `quantite_avant`, `quantite_fournie`, `produit_id`, `date`) VALUES
-(29, 1000, 1200, 3, '09/05/2022'),
-(27, 500, 500, 2, '07/05/2022'),
-(25, 200, 800, 3, '07/05/2022');
+(36, 200, 100, 9, '2022-05-11'),
+(33, 500, 50, 8, '2022-05-11');
 
 -- --------------------------------------------------------
 
